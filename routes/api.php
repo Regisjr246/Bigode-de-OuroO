@@ -9,6 +9,10 @@ use App\Http\Controllers\AdiministradorController;
 use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ServicoController;
 use App\Http\Controllers\ProfissionalController;
+use App\Http\Middleware\IsAuthenticated;
+use App\Http\Middleware\SetSanctumGuard;
+use App\Http\Middleware\VerifyAdminGuard;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -116,7 +120,7 @@ Route::get('visualizar/TipoPagame/nto/desabilitado', [TipoDePagamentoController:
 
 
 Route::post('adm/login', [AdiministradorController::class, 'loginAdiministrador']);
-
+Route::get('adm/login/verificar', [AdiministradorController::class, 'verificaUsuarioLogado'])->middleware(['auth:sanctum', SetSanctumGuard::class, IsAuthenticated::class]);
 
 
 Route::post('adm/cpf/pesquisar', [AdiministradorController::class, 'pesquisarPorCpf']);

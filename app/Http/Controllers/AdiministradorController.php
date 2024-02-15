@@ -60,6 +60,12 @@ class AdiministradorController extends Controller
     }
 
 
+    public function verificaUsuarioLogado(Request $request)
+    {
+        return 'Logado';
+    }
+
+
 
 
 
@@ -229,4 +235,16 @@ public function redefinirSenha(Request $request){
         'message' => "Sua senha foi atualizada"
     ]);
 }
+
+
+
+
+
+
+
+
+
+
+
+
 }

@@ -15,12 +15,19 @@ class VerifyAdminGuard
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
     public function handle(Request $request, Closure $next): Response
-    { if(!auth()->user() instanceof Adiministrador){
-        return response()->json([
-            'status'=>false,
-            'message'=> 'Não é uma instacia de ADM'
-        ]);
-    }
+    {
+        if (!auth()->user() instanceof Adiministrador) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Não é uma instacia de ADM'
+            ]);
+        }
+        else{
+            return response()->json([
+                'status' => true,
+                'message' => 'é uma instacia de ADM'
+            ]);
+        }
         return $next($request);
     }
 }
