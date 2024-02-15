@@ -40,6 +40,12 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
+        
+        'adiministradors' => [
+            'driver' => 'session',
+            'provider' => 'adiministradors',
+    
+        ],
     ],
 
     /*
@@ -69,6 +75,11 @@ return [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+
+        'adiministradors' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Adiministrador::class,
+        ]
     ],
 
     /*

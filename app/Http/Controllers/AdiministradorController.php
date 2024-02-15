@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\AdiministradorUserRequestUpdate;
 use App\Http\Requests\AdiministradorUserRequest;
 use App\Models\Adiministrador;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 class AdiministradorController extends Controller
 {
@@ -22,7 +23,65 @@ class AdiministradorController extends Controller
             "message" => "Adiministrador cadastrado com sucesso",
             "data" => $Adiministrador
         ], 200);
+
+    
     }
+
+
+    public function loginAdiministrador(Request $request)
+    {
+        try {
+
+            if (Auth::guard('adiministradors')->attempt([
+                'email' => $request->email,
+                'password' => $request->password
+            ])) {
+                $user = Auth::guard('adiministradors')->user();
+
+                $token = $user->createToken($request->server('HTTP_USER_AGENT', ['adiministradors']))->plainTextToken;
+
+                return response()->json([
+                    'status' => 'true',
+                    'message' => 'login efetuado com sucesso',
+                    'token' => $token
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'credenciais incorretas'
+                ]);
+            }
+        } catch (\Throwable $th) {
+            return response()->json([
+                'satus' => false,
+                "message" => $th->getMessage()
+            ], 500);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //PESQUISA POR NOME
 public function pesquisarPorAdiministrador(Request $request)

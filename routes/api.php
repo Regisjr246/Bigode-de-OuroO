@@ -113,6 +113,12 @@ Route::get('visualizar/TipoPagame/nto/desabilitado', [TipoDePagamentoController:
 
 //-------------------------------------PERFIS:------------------------------------------------------------------
 //ADM:
+
+
+Route::post('adm/login', [AdiministradorController::class, 'loginAdiministrador']);
+
+
+
 Route::post('adm/cpf/pesquisar', [AdiministradorController::class, 'pesquisarPorCpf']);
 Route::post('adm/cadastro', [AdiministradorController::class,  'cadastroAdiministrador']);
 Route::delete('adm/excluir/adm/{id}', [AdiministradorController::class, 'deletarAdiministrador']);
@@ -124,6 +130,7 @@ Route::put('adm/redefinir/senha/Adiministrador', [AdiministradorController::clas
 
 
 //ADM:CADASTRO DE CLIENTES: OK
+
 Route::delete('adm/cliente/excluir/{id}', [ClienteController::class, 'deletar']);
 Route::post('adm/cliente/cadastroCliente', [ClienteController::class,  'cadastroCliente']);
 Route::post('adm/cliente/buscarNomecliente', [ClienteController::class, 'pesquisarPorCliente']);
